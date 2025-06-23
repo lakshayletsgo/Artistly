@@ -1,0 +1,82 @@
+{
+  "artists": [
+    {
+      "id": "1",
+      "name": "Sarah Johnson",
+      "category": "singers",
+      "categories": ["singers"],
+      "image": "/images/artists/sarah.jpg",
+      "location": "New York, NY",
+      "priceRange": "$500-1000",
+      "rating": 4.8,
+      "reviews": 24,
+      "languages": ["English", "Spanish"],
+      "bio": "Professional vocalist with 10+ years of experience in jazz and pop music"
+    },
+    {
+      "id": "2",
+      "name": "Michael Chen",
+      "category": "dancers",
+      "categories": ["dancers"],
+      "image": "/images/artists/michael.jpg",
+      "location": "Los Angeles, CA",
+      "priceRange": "$300-800",
+      "rating": 4.9,
+      "reviews": 36,
+      "languages": ["English", "Mandarin"],
+      "bio": "Contemporary and hip-hop dancer, choreographer with international performance experience"
+    },
+    {
+      "id": "3",
+      "name": "DJ Alex",
+      "category": "djs",
+      "categories": ["djs"],
+      "image": "/images/artists/alex.jpg",
+      "location": "Miami, FL",
+      "priceRange": "$400-1200",
+      "rating": 4.7,
+      "reviews": 42,
+      "languages": ["English", "Portuguese"],
+      "bio": "Versatile DJ specializing in house, EDM, and Latin music"
+    },
+    {
+      "id": "4",
+      "name": "Dr. Emily Roberts",
+      "category": "speakers",
+      "categories": ["speakers"],
+      "image": "/images/artists/emily.jpg",
+      "location": "Chicago, IL",
+      "priceRange": "$1000-2500",
+      "rating": 4.9,
+      "reviews": 18,
+      "languages": ["English"],
+      "bio": "Motivational speaker and leadership expert with TEDx experience"
+    },
+    {
+      "id": "5",
+      "name": "James Wilson",
+      "category": "singers",
+      "categories": ["singers", "speakers"],
+      "image": "/images/artists/james.jpg",
+      "location": "Nashville, TN",
+      "priceRange": "$600-1500",
+      "rating": 4.6,
+      "reviews": 29,
+      "languages": ["English"],
+      "bio": "Country music vocalist and storyteller"
+    },
+    {
+      "id": "6",
+      "name": "Maria Garcia",
+      "category": "dancers",
+      "categories": ["dancers", "speakers"],
+      "image": "/images/artists/maria.jpg",
+      "location": "San Francisco, CA",
+      "priceRange": "$400-900",
+      "rating": 4.8,
+      "reviews": 31,
+      "languages": ["English", "Spanish"],
+      "bio": "Latin dance specialist and dance instructor"
+    }
+  ]
+} 

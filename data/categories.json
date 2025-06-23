@@ -1,0 +1,36 @@
+{
+  "categories": [
+    {
+      "id": "singers",
+      "name": "Singers",
+      "description": "Professional vocalists for events and performances",
+      "icon": "microphone",
+      "image": "/images/categories/singers.jpg",
+      "count": 150
+    },
+    {
+      "id": "dancers",
+      "name": "Dancers",
+      "description": "Skilled dancers across various styles and genres",
+      "icon": "music",
+      "image": "/images/categories/dancers.jpg",
+      "count": 120
+    },
+    {
+      "id": "djs",
+      "name": "DJs",
+      "description": "Professional DJs for parties and events",
+      "icon": "headphones",
+      "image": "/images/categories/djs.jpg",
+      "count": 80
+    },
+    {
+      "id": "speakers",
+      "name": "Speakers",
+      "description": "Engaging speakers for conferences and events",
+      "icon": "mic-2",
+      "image": "/images/categories/speakers.jpg",
+      "count": 60
+    }
+  ]
+} 
