@@ -32,20 +32,39 @@ Artistly is a modern web platform that connects event organizers with talented p
 
 ## 📋 Project Structure
 
+```plaintext
 artistly/
-├── app/ # Next.js app router pages
-│ ├── artists/ # Artist listing page
-│ ├── dashboard/ # Admin dashboard
-│ ├── onboard/ # Artist onboarding
-│ └── layout.tsx # Root layout
-├── components/ # Reusable components
-│ ├── ui/ # UI components
-│ └── ArtistCard.tsx # Artist card component
-├── data/ # Mock data
-│ ├── artists.json # Artist information
-│ └── categories.json # Category data
-└── lib/ # Utility functions
-
+│
+├── app/
+│   ├── artists/          # Artist listing page
+│   ├── dashboard/        # Admin dashboard
+│   ├── onboard/          # Artist onboarding
+│   └── layout.tsx        # Root layout
+│
+├── components/
+│   ├── ui/              # UI components (buttons, cards, etc.)
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   └── ...
+│   ├── ArtistCard.tsx   # Artist card component
+│   ├── Header.tsx       # Site header
+│   └── Footer.tsx       # Site footer
+│
+├── data/
+│   ├── artists.json     # Artist information
+│   └── categories.json  # Category data
+│
+├── lib/
+│   ├── utils.ts         # Utility functions
+│   └── constants.ts     # Constants and defaults
+│
+├── public/
+│   └── images/
+│       └── defaults/    # Default images
+│
+└── styles/
+    └── globals.css      # Global styles
+```
 
 ## 🚀 Getting Started
 
@@ -174,17 +193,6 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
   - react-hook-form
   - zod
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
