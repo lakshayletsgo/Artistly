@@ -24,33 +24,47 @@ import { cn } from '@/lib/utils'
 import artists from '@/data/artists.json'
 import categories from '@/data/categories.json'
 
-const locations = [...new Set(artists.artists.map((artist) => artist.location))]
+// Get unique locations and sort them alphabetically
+const locations = [...new Set(artists.artists.map((artist) => artist.location))].sort()
 const priceRanges = ['$0-500', '$500-1000', '$1000-2000', '$2000+']
 
 export default function ArtistsPage() {
   const searchParams = useSearchParams()
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [location, setLocation] = useState<string>('')
+  const [locationSearch, setLocationSearch] = useState('')
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 2000])
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const category = searchParams.get('category')
+    const loc = searchParams.get('location')
     if (category) {
       setSelectedCategories([category])
     }
+    if (loc) {
+      setLocation(loc)
+    }
   }, [searchParams])
+
+  // Filter locations based on search
+  const filteredLocations = locations.filter((loc) =>
+    loc.toLowerCase().includes(locationSearch.toLowerCase())
+  )
 
   const filteredArtists = artists.artists.filter((artist) => {
     const matchesCategory =
       selectedCategories.length === 0 ||
       artist.categories.some((cat) => selectedCategories.includes(cat))
-    const matchesLocation = !location || artist.location === location
+    
+    const matchesLocation = !location || artist.location.toLowerCase() === location.toLowerCase()
+    
     const artistPrice = parseInt(
       artist.priceRange.replace(/[^0-9-]/g, '').split('-')[0]
     )
     const matchesPrice =
       artistPrice >= priceRange[0] && artistPrice <= priceRange[1]
+    
     return matchesCategory && matchesLocation && matchesPrice
   })
 
@@ -58,9 +72,20 @@ export default function ArtistsPage() {
     setPriceRange([value[0], value[1]])
   }
 
+  const clearFilters = () => {
+    setSelectedCategories([])
+    setLocation('')
+    setPriceRange([0, 2000])
+  }
+
   return (
     <div className="container py-10">
-      <h1 className="text-4xl font-bold mb-8">Find Your Perfect Artist</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold">Find Your Perfect Artist</h1>
+        <Button variant="outline" onClick={clearFilters}>
+          Clear Filters
+        </Button>
+      </div>
 
       {/* Filters */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -103,22 +128,40 @@ export default function ArtistsPage() {
                 aria-expanded={open}
                 className="w-full justify-between"
               >
-                {location
-                  ? locations.find((loc) => loc === location)
-                  : 'Select location...'}
+                {location || 'Select location...'}
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-full p-0">
               <Command>
-                <CommandInput placeholder="Search location..." />
+                <CommandInput 
+                  placeholder="Search location..." 
+                  value={locationSearch}
+                  onValueChange={setLocationSearch}
+                />
                 <CommandEmpty>No location found.</CommandEmpty>
                 <CommandGroup>
-                  {locations.map((loc) => (
+                  <CommandItem
+                    onSelect={() => {
+                      setLocation('')
+                      setLocationSearch('')
+                      setOpen(false)
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        'mr-2 h-4 w-4',
+                        !location ? 'opacity-100' : 'opacity-0'
+                      )}
+                    />
+                    All Locations
+                  </CommandItem>
+                  {filteredLocations.map((loc) => (
                     <CommandItem
                       key={loc}
-                      onSelect={(currentValue: string) => {
-                        setLocation(currentValue === location ? '' : currentValue)
+                      onSelect={() => {
+                        setLocation(loc)
+                        setLocationSearch('')
                         setOpen(false)
                       }}
                     >
@@ -157,6 +200,17 @@ export default function ArtistsPage() {
         </div>
       </div>
 
+      {/* Results Summary */}
+      <div className="mb-6">
+        <p className="text-sm text-muted-foreground">
+          Found {filteredArtists.length} artist{filteredArtists.length !== 1 ? 's' : ''}
+          {location && ` in ${location}`}
+          {selectedCategories.length > 0 && ` for ${selectedCategories.map(cat => 
+            categories.categories.find(c => c.id === cat)?.name
+          ).join(', ')}`}
+        </p>
+      </div>
+
       {/* Artists Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredArtists.map((artist) => (
@@ -167,7 +221,7 @@ export default function ArtistsPage() {
       {filteredArtists.length === 0 && (
         <div className="text-center py-10">
           <p className="text-muted-foreground">
-            No artists found matching your criteria.
+            No artists found matching your criteria. Try adjusting your filters.
           </p>
         </div>
       )}
