@@ -193,9 +193,3 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
   - react-hook-form
   - zod
 
-
-## 🙏 Acknowledgments
-
-- UI Components by [shadcn/ui](https://ui.shadcn.com)
-- Icons by [Lucide](https://lucide.dev)
-- Built with [Next.js](https://nextjs.org)
